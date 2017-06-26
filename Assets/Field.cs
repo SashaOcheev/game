@@ -20,7 +20,7 @@ public class Field : MonoBehaviour
     public int Size;
     public int Row;
     public int Col;
-    private void Start()
+    private void Awake()
     {
         Update();
         Row = Convert.ToInt32(transform.position.z) / Size;

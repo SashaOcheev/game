@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    private Field _currentField;
     private Field[] _fields;
+    private List<Field> _currentFields;
+    private FlipBehavior _flipBehavior;
 
     private void Start()
     {
+        _currentFields = new List<Field>();
         _fields = FindObjectsOfType<Field>();
         foreach (var field in _fields)
         {
             if (field.IsCurrent)
             {
-                _currentField = field;
+                _currentFields.Add(field);
             }
         }
+        _flipBehavior = GetComponent<FlipBehavior>();
+        _flipBehavior.Flip(_fields, _currentFields, Direct.DOWN);
     }
 
     // Update is called once per frame
