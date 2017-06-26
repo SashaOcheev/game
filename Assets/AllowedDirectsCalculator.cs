@@ -63,14 +63,62 @@ public class AllowedDirectsCalculator : MonoBehaviour
 
     private Dictionary<Direct, bool> CalculateAllowedForYPosition(Field[] fields, List<Field> currentFields)
     {
-        var allowedDirects = new Dictionary<Direct, bool>();
+        var allowedDirects = GetAllFalse();
+        var field = fields[0];
+
+        if (fields.Any(f => f.Row == field.Row + 1 && f.Col == field.Col)
+            && fields.Any(f => f.Row == field.Row + 2 && f.Col == field.Col))
+        {
+            allowedDirects[Direct.UP] = true;
+        }
+        if (fields.Any(f => f.Row == field.Row - 1 && f.Col == field.Col)
+            && fields.Any(f => f.Row == field.Row - 2 && f.Col == field.Col))
+        {
+            allowedDirects[Direct.DOWN] = true;
+        }
+        if (fields.Any(f => f.Row == field.Col - 1 && f.Col == field.Row)
+            && fields.Any(f => f.Row == field.Col - 2 && f.Col == field.Row))
+        {
+            allowedDirects[Direct.LEFT] = true;
+        }
+        if (fields.Any(f => f.Row == field.Col + 1 && f.Col == field.Row)
+            && fields.Any(f => f.Row == field.Col + 2 && f.Col == field.Row))
+        {
+            allowedDirects[Direct.RIGHT] = true;
+        }
 
         return allowedDirects;
     }
 
     private Dictionary<Direct, bool> CalculateAllowedForZPosition(Field[] fields, List<Field> currentFields)
     {
-        var allowedDirects = new Dictionary<Direct, bool>();
+        var allowedDirects = GetAllFalse();
+        var bottom = fields[0];
+        var top = fields[1];
+        if (bottom.Row > top.Row)
+        {
+            bottom = fields[1];
+            top = fields[0];
+        }
+
+        if (fields.Any(f => f.Col == top.Col && f.Row == top.Row + 1))
+        {
+            allowedDirects[Direct.UP] = true;
+        }
+        if (fields.Any(f => f.Col == bottom.Col && f.Row == bottom.Row - 1))
+        {
+            allowedDirects[Direct.DOWN] = true;
+        }
+        if (fields.Any(f => f.Row == top.Row && f.Col == top.Row - 1)
+            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Row - 1))
+        {
+            allowedDirects[Direct.LEFT] = true;
+        }
+        if (fields.Any(f => f.Row == top.Row && f.Col == top.Row + 1)
+            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Row + 1))
+        {
+            allowedDirects[Direct.RIGHT] = true;
+        }
 
         return allowedDirects;
     }
