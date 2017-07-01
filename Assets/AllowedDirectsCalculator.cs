@@ -8,11 +8,6 @@ public class AllowedDirectsCalculator : MonoBehaviour
 {
     public Dictionary<Direct, bool> CalculateAllowedDirects(Field[] fields, List<Field> currentFields, Position position)
     {
-        if (currentFields.Count < 1 || currentFields.Count > 2)
-        {
-            throw new System.Exception(String.Format("current fields count is {0}", currentFields.Count));
-        }
-
         if (position == Position.X)
         {
             return CalculateAllowedForXPosition(fields, currentFields);
@@ -31,12 +26,12 @@ public class AllowedDirectsCalculator : MonoBehaviour
     private Dictionary<Direct, bool> CalculateAllowedForXPosition(Field[] fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
-        var left = fields[0];
-        var right = fields[1];
+        var left = currentFields.First();
+        var right = currentFields.Last();
         if (left.Col > right.Col)
         {
-            left = fields[1];
-            right = fields[0];
+            left = currentFields.Last();
+            right = currentFields.First();
         }
 
         if (fields.Any(f => f.Col == left.Col - 1 && f.Row == left.Row))
@@ -64,7 +59,7 @@ public class AllowedDirectsCalculator : MonoBehaviour
     private Dictionary<Direct, bool> CalculateAllowedForYPosition(Field[] fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
-        var field = fields[0];
+        var field = currentFields.First();
 
         if (fields.Any(f => f.Row == field.Row + 1 && f.Col == field.Col)
             && fields.Any(f => f.Row == field.Row + 2 && f.Col == field.Col))
@@ -93,12 +88,12 @@ public class AllowedDirectsCalculator : MonoBehaviour
     private Dictionary<Direct, bool> CalculateAllowedForZPosition(Field[] fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
-        var bottom = fields[0];
-        var top = fields[1];
+        var bottom = currentFields.First();
+        var top = currentFields.Last();
         if (bottom.Row > top.Row)
         {
-            bottom = fields[1];
-            top = fields[0];
+            bottom = currentFields.Last();
+            top = currentFields.First();
         }
 
         if (fields.Any(f => f.Col == top.Col && f.Row == top.Row + 1))

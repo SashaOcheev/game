@@ -7,6 +7,7 @@ public class Map : MonoBehaviour
     private Field[] _fields;
     private List<Field> _currentFields;
     private FlipBehavior _flipBehavior;
+    
 
     private void Start()
     {
@@ -20,10 +21,8 @@ public class Map : MonoBehaviour
             }
         }
         _flipBehavior = GetComponent<FlipBehavior>();
-        _flipBehavior.Flip(_fields, _currentFields, Direct.DOWN);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         ControlCurrentField();
@@ -33,19 +32,19 @@ public class Map : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.W))
         {
-
+            _flipBehavior.Flip(_fields, _currentFields, Direct.UP);
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-
+            _flipBehavior.Flip(_fields, _currentFields, Direct.DOWN);
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-
+            _flipBehavior.Flip(_fields, _currentFields, Direct.LEFT);
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-
+            _flipBehavior.Flip(_fields, _currentFields, Direct.RIGHT);
         }
     }
 }
