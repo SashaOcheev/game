@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameplayController : MonoBehaviour
+public class GameplayController : Controller
 {
-    Dictionary<KeyCode, Direct> _keyCodeDirectMap;
     AllowedDirectsCalculator _allowedDirectsCalculator;
     FlipBehavior _flipBehavior;
     GameState _gameState;
@@ -16,13 +15,7 @@ public class GameplayController : MonoBehaviour
         _flipBehavior = GetComponent<FlipBehavior>();
         _gameState = GetComponent<GameState>();
 
-        _keyCodeDirectMap = new Dictionary<KeyCode, Direct>
-        {
-            { KeyCode.UpArrow, Direct.UP },
-            { KeyCode.DownArrow, Direct.DOWN },
-            { KeyCode.LeftArrow, Direct.LEFT },
-            { KeyCode.RightArrow, Direct.RIGHT }
-        };
+        Init();
     }
 
     private void Update()
@@ -31,27 +24,7 @@ public class GameplayController : MonoBehaviour
     }
     #endregion
 
-    private void OnKeyUp()
-    {
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            FlipOnAllowedDirect(KeyCode.UpArrow);
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            FlipOnAllowedDirect(KeyCode.DownArrow);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            FlipOnAllowedDirect(KeyCode.LeftArrow);
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            FlipOnAllowedDirect(KeyCode.RightArrow);
-        }
-    }
-
-    private void FlipOnAllowedDirect(KeyCode keyCode)
+    protected override void FlipOnAllowedDirect(KeyCode keyCode)
     {
         var direct = _keyCodeDirectMap[keyCode];
 

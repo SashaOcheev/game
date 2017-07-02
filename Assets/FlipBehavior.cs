@@ -63,6 +63,7 @@ public class FlipBehavior : MonoBehaviour
                 newCurrentFields.AddRange(fields.Where(x => x.Col == right.Col + 1 && x.Row == right.Row));
                 break;
         }
+  
         return newCurrentFields;
     }
 
