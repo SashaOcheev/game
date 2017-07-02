@@ -4,38 +4,25 @@ using UnityEngine;
 
 public abstract class Controller : MonoBehaviour
 {
-    protected Dictionary<KeyCode, Direct> _keyCodeDirectMap;
-
-    protected void Init()
-    {
-        _keyCodeDirectMap = new Dictionary<KeyCode, Direct>
-        {
-            { KeyCode.UpArrow, Direct.UP },
-            { KeyCode.DownArrow, Direct.DOWN },
-            { KeyCode.LeftArrow, Direct.LEFT },
-            { KeyCode.RightArrow, Direct.RIGHT }
-        };
-    }
-
     protected void OnKeyUp()
     {
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            FlipOnAllowedDirect(KeyCode.UpArrow);
+            FlipOnAllowedDirect(Direct.UP);
         }
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            FlipOnAllowedDirect(KeyCode.DownArrow);
+            FlipOnAllowedDirect(Direct.DOWN);
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            FlipOnAllowedDirect(KeyCode.LeftArrow);
+            FlipOnAllowedDirect(Direct.LEFT);
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            FlipOnAllowedDirect(KeyCode.RightArrow);
+            FlipOnAllowedDirect(Direct.RIGHT);
         }
     }
 
-    abstract protected void FlipOnAllowedDirect(KeyCode keyCode);
+    abstract protected void FlipOnAllowedDirect(Direct direct);
 }

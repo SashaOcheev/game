@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,6 @@ public class GameplayController : Controller
         _allowedDirectsCalculator = GetComponent<AllowedDirectsCalculator>();
         _flipBehavior = GetComponent<FlipBehavior>();
         _gameState = GetComponent<GameState>();
-
-        Init();
     }
 
     private void Update()
@@ -24,10 +23,8 @@ public class GameplayController : Controller
     }
     #endregion
 
-    protected override void FlipOnAllowedDirect(KeyCode keyCode)
+    protected override void FlipOnAllowedDirect(Direct direct)
     {
-        var direct = _keyCodeDirectMap[keyCode];
-
         var fields = _gameState.Fields;
         var allowedDirects = _allowedDirectsCalculator.CalculateAllowedDirects(fields);
         if (!allowedDirects[direct])
