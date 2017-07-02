@@ -6,24 +6,38 @@ using UnityEngine;
 
 public class AllowedDirectsCalculator : MonoBehaviour
 {
-    public Dictionary<Direct, bool> CalculateAllowedDirects(Field[] fields, List<Field> currentFields, Position position)
+    CurrentFieldsCalculator _currentFieldsCalculator;
+    PositionCalculator _positionCalculator;
+
+    #region MonoBehavior Members
+    private void Start()
     {
-        if (position == Position.X)
+        _currentFieldsCalculator = GetComponent<CurrentFieldsCalculator>();
+        _positionCalculator = GetComponent<PositionCalculator>();
+    }
+    #endregion
+
+    public Dictionary<Direct, bool> CalculateAllowedDirects(List<Field> fields)
+    {
+        var currentFields = _currentFieldsCalculator.CalculateCurrentFields(fields);
+        var currentPosition = _positionCalculator.CalculatePosition(fields);
+
+        if (currentPosition == Position.X)
         {
-            return CalculateAllowedForXPosition(fields, currentFields);
+            return CalculateAllowedForX(fields, currentFields);
         }
-        if (position == Position.Y)
+        if (currentPosition == Position.Y)
         {
-            return CalculateAllowedForYPosition(fields, currentFields);
+            return CalculateAllowedForY(fields, currentFields);
         }
-        if (position == Position.Z)
+        if (currentPosition == Position.Z)
         {
-            return CalculateAllowedForZPosition(fields, currentFields);
+            return CalculateAllowedForZ(fields, currentFields);
         }
         throw new Exception("CalculateAllowedDirects: current fields has no position");
     }
 
-    private Dictionary<Direct, bool> CalculateAllowedForXPosition(Field[] fields, List<Field> currentFields)
+    private Dictionary<Direct, bool> CalculateAllowedForX(List<Field> fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
         var left = currentFields.First();
@@ -56,7 +70,7 @@ public class AllowedDirectsCalculator : MonoBehaviour
         return allowedDirects;
     }
 
-    private Dictionary<Direct, bool> CalculateAllowedForYPosition(Field[] fields, List<Field> currentFields)
+    private Dictionary<Direct, bool> CalculateAllowedForY(List<Field> fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
         var field = currentFields.First();
@@ -85,7 +99,7 @@ public class AllowedDirectsCalculator : MonoBehaviour
         return allowedDirects;
     }
 
-    private Dictionary<Direct, bool> CalculateAllowedForZPosition(Field[] fields, List<Field> currentFields)
+    private Dictionary<Direct, bool> CalculateAllowedForZ(List<Field> fields, List<Field> currentFields)
     {
         var allowedDirects = GetAllFalse();
         var bottom = currentFields.First();
@@ -104,13 +118,13 @@ public class AllowedDirectsCalculator : MonoBehaviour
         {
             allowedDirects[Direct.DOWN] = true;
         }
-        if (fields.Any(f => f.Row == top.Row && f.Col == top.Row - 1)
-            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Row - 1))
+        if (fields.Any(f => f.Row == top.Row && f.Col == top.Col - 1)
+            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Col - 1))
         {
             allowedDirects[Direct.LEFT] = true;
         }
-        if (fields.Any(f => f.Row == top.Row && f.Col == top.Row + 1)
-            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Row + 1))
+        if (fields.Any(f => f.Row == top.Row && f.Col == top.Col + 1)
+            && fields.Any(f => f.Row == bottom.Row && f.Col == bottom.Col + 1))
         {
             allowedDirects[Direct.RIGHT] = true;
         }
@@ -120,11 +134,13 @@ public class AllowedDirectsCalculator : MonoBehaviour
 
     private Dictionary<Direct, bool> GetAllFalse()
     {
-        var result = new Dictionary<Direct, bool>();
-        result[Direct.LEFT] = false;
-        result[Direct.RIGHT] = false;
-        result[Direct.UP] = false;
-        result[Direct.DOWN] = false;
+        var result = new Dictionary<Direct, bool>
+        {
+            { Direct.LEFT, false },
+            { Direct.RIGHT, false },
+            { Direct.UP, false },
+            { Direct.DOWN, false }
+        };
         return result;
     }
 }

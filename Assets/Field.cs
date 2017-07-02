@@ -7,37 +7,35 @@ using System;
 
 public class Field : MonoBehaviour
 {
-    public bool HasStar = false;
-
-    public bool IsCurrent = false;
+    [SerializeField]
+    private bool _hasStar = false;
+    [SerializeField]
+    private bool _isCurrent;
     [SerializeField]
     private bool _isEnd = false;
-    public bool GetIsOk()
-    {
-        return IsCurrent == _isEnd;
-    }
-
-    public int Size;
-    public int Row;
-    public int Col;
-    private void Awake()
-    {
-        Update();
-        Row = Convert.ToInt32(transform.position.z) / Size;
-        Col = Convert.ToInt32(transform.position.x) / Size;
-    }
-
+    [SerializeField]
+    private int _size;
     [SerializeField]
     private bool _wasStateChange = true;
-    public void MoveOn()
+
+    public int Row { get; private set; }
+    public int Col { get; private set; }
+
+    public bool IsCurrent
     {
-        _wasStateChange = true;
-        IsCurrent = true;
+        get
+        {
+            return _isCurrent;
+        }
     }
-    public void MoveFrom()
+
+    #region MonoBehavior Members
+    private void Awake()
     {
-        _wasStateChange = true;
-        IsCurrent = false;
+        _size = Convert.ToInt32(transform.localScale.x);
+        Update();
+        Row = Convert.ToInt32(transform.position.z) / _size;
+        Col = Convert.ToInt32(transform.position.x) / _size;
     }
 
     private void Update()
@@ -50,14 +48,31 @@ public class Field : MonoBehaviour
         ChangeColor();
         _wasStateChange = false;
     }
+    #endregion
+
+    public bool GetIsOk()
+    {
+        return _isCurrent == _isEnd;
+    }
+
+    public void MoveOn()
+    {
+        _wasStateChange = true;
+        _isCurrent = true;
+    }
+    public void MoveFrom()
+    {
+        _wasStateChange = true;
+        _isCurrent = false;
+    }
 
     private void ChangeColor()
     {
-        if (IsCurrent && _isEnd)
+        if (_isCurrent && _isEnd)
         {
             SwitchColor(Color.yellow);
         }
-        else if (IsCurrent)
+        else if (_isCurrent)
         {
             SwitchColor(Color.red);
         }
