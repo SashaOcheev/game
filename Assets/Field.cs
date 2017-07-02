@@ -8,7 +8,7 @@ using System;
 public class Field : MonoBehaviour
 {
     [SerializeField]
-    private bool _hasStar = false;
+    private Charge _charge = Charge.NONE;
     [SerializeField]
     private bool _isCurrent;
     [SerializeField]
