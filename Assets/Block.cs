@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField]
-    private Color _color;
+    BlockFlipCalculator _blockFlipCalculator;
 
     #region MonoBehavior Members
     private void Start()
     {
-        GetComponent<Renderer>().material.color = _color;
+        _blockFlipCalculator = GetComponent<BlockFlipCalculator>();
     }
     #endregion
 
     public void FlipUp()
     {
-        
+        _blockFlipCalculator.FlipUp();
     }
 
     public void FlipDown()
     {
-        
+        _blockFlipCalculator.FlipDown();
     }
 
     public void FlipLeft()
     {
-        
+        _blockFlipCalculator.FlipLeft();
     }
 
     public void FlipRight()
     {
-        
+        _blockFlipCalculator.FlipRight();
     }
 }
