@@ -7,16 +7,7 @@ namespace Scripts.Mechanics
 {
     public class GameMapController : AbstractGameplayController
     {
-        AllowedDirectsCalculator _allowedDirectsCalculator;
-        GameMap _gameMap;
-
         #region MonoBehavior Members
-        private void Start()
-        {
-            _allowedDirectsCalculator = GetComponent<AllowedDirectsCalculator>();
-            _gameMap = GetComponent<GameMap>();
-        }
-
         private void Update()
         {
             OnKeyUp();

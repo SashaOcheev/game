@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.Mechanics;
 
 namespace Scripts
 {
     public abstract class AbstractGameplayController : MonoBehaviour
     {
+        protected GameMap _gameMap;
+
+        #region MonoBehaviour members
+        private void Start()
+        {
+            _gameMap = GetComponent<GameMap>();
+        }
+        #endregion
+
         protected void OnKeyUp()
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))

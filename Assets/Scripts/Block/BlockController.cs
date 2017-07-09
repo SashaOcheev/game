@@ -12,8 +12,6 @@ namespace Scripts.Block
         private void Start()
         {
             _gameMap = GetComponent<GameMap>();
-            _allowedDirectsCalculator = GetComponent<AllowedDirectsCalculator>();
-
             _block = FindObjectOfType<Block>();
         }
 
@@ -27,7 +25,18 @@ namespace Scripts.Block
         {
             switch (direct)
             {
-                
+                case Direct.LEFT:
+                    _block.FlipLeft();
+                    break;
+                case Direct.RIGHT:
+                    _block.FlipRight();
+                    break;
+                case Direct.UP:
+                    _block.FlipUp();
+                    break;
+                case Direct.DOWN:
+                    _block.FlipDown();
+                    break;
             }
         }
     }

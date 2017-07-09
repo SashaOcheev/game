@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Mechanics
 {
-    public class AllowedDirectsCalculator
+    public class AllowedDirectsCalculator : MonoBehaviour
     {
         public Dictionary<Direct, bool> CalculateAllowedDirects(List<Field> fields, List<Field> currentFields, Position position)
         {
