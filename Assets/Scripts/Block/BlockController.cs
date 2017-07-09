@@ -13,6 +13,7 @@ namespace Scripts.Block
         {
             _gameMap = GetComponent<GameMap>();
             _block = FindObjectOfType<Block>();
+            _block.CurrentPosition = _block.CurrentPosition = _gameMap.CurrentPosition;
         }
 
         private void Update()
