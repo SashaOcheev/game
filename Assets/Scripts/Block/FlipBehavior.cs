@@ -9,28 +9,42 @@ namespace Scripts.Block
 
         public void FlipRight(Transform transform, ref Position currentPosition)
         {
+            var axis = new Vector3(0f, 0f, -1f);
+
             switch (currentPosition)
             {
                 case Position.X:
                     transform.RotateAround(
-                        new Vector3(transform.position.x + transform.localScale.x / 2, transform.position.y - transform.localScale.y / 2, transform.position.z),
-                        new Vector3(0f, 0f, -1f),
+                        new Vector3(
+                            transform.position.x + transform.localScale.x / 2, 
+                            transform.position.y - transform.localScale.y / 2, 
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Y;
                     break;
                 case Position.Y:
                     transform.RotateAround(
-                        new Vector3(transform.position.x + transform.localScale.y / 2, transform.position.y - transform.localScale.x / 2, transform.position.z),
-                        new Vector3(0f, 0f, -1f),
+                        new Vector3(
+                            transform.position.x + transform.localScale.y / 2,
+                            transform.position.y - transform.localScale.x / 2,
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.X;
                     break;
                 case Position.Z:
                     transform.RotateAround(
-                        new Vector3(transform.position.x + transform.localScale.y / 2, transform.position.y - transform.localScale.y / 2, transform.position.z),
-                        new Vector3(0f, 0f, -1f),
+                        new Vector3(
+                            transform.position.x + transform.localScale.y / 2,
+                            transform.position.y - transform.localScale.y / 2, 
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     break;
@@ -41,28 +55,42 @@ namespace Scripts.Block
 
         public void FlipLeft(Transform transform, ref Position currentPosition)
         {
+            var axis = new Vector3(0f, 0f, 1f);
+
             switch (currentPosition)
             {
                 case Position.X:
                     transform.RotateAround(
-                        new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y - transform.localScale.y / 2, transform.position.z),
-                        new Vector3(0f, 0f, 1f),
+                        new Vector3(
+                            transform.position.x - transform.localScale.x / 2,
+                            transform.position.y - transform.localScale.y / 2,
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Y;
                     break;
                 case Position.Y:
                     transform.RotateAround(
-                        new Vector3(transform.position.x - transform.localScale.y / 2, transform.position.y - transform.localScale.x / 2, transform.position.z),
-                        new Vector3(0f, 0f, 1f),
+                        new Vector3(
+                            transform.position.x - transform.localScale.y / 2, 
+                            transform.position.y - transform.localScale.x / 2,
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.X;
                     break;
                 case Position.Z:
                     transform.RotateAround(
-                        new Vector3(transform.position.x - transform.localScale.y / 2, transform.position.y - transform.localScale.y / 2, transform.position.z),
-                        new Vector3(0f, 0f, 1f),
+                        new Vector3(
+                            transform.position.x - transform.localScale.y / 2,
+                            transform.position.y - transform.localScale.y / 2,
+                            transform.position.z
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     break;
@@ -73,27 +101,41 @@ namespace Scripts.Block
 
         public void FlipUp(Transform transform, ref Position currentPosition)
         {
+            var axis = new Vector3(1f, 0f, 0f);
+
             switch (currentPosition)
             {
                 case Position.X:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z + transform.localScale.z / 2),
-                        new Vector3(1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x, 
+                            transform.position.y - transform.localScale.y / 2, 
+                            transform.position.z + transform.localScale.z / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     break;
                 case Position.Y:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.x / 2, transform.position.z + transform.localScale.z / 2),
-                        new Vector3(1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x,
+                            transform.position.y - transform.localScale.x / 2,
+                            transform.position.z + transform.localScale.z / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Z;
                     break;
                 case Position.Z:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z + transform.localScale.x / 2),
-                        new Vector3(1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x,
+                            transform.position.y - transform.localScale.y / 2,
+                            transform.position.z + transform.localScale.x / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Y;
@@ -105,27 +147,41 @@ namespace Scripts.Block
 
         public void FlipDown(Transform transform, ref Position currentPosition)
         {
+            var axis = new Vector3(-1f, 0f, 0f);
+
             switch (currentPosition)
             {
                 case Position.X:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z - transform.localScale.z / 2),
-                        new Vector3(-1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x,
+                            transform.position.y - transform.localScale.y / 2,
+                            transform.position.z - transform.localScale.z / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     break;
                 case Position.Y:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.x / 2, transform.position.z - transform.localScale.z / 2),
-                        new Vector3(-1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x,
+                            transform.position.y - transform.localScale.x / 2,
+                            transform.position.z - transform.localScale.z / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Z;
                     break;
                 case Position.Z:
                     transform.RotateAround(
-                        new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z - transform.localScale.x / 2),
-                        new Vector3(-1f, 0f, 0f),
+                        new Vector3(
+                            transform.position.x,
+                            transform.position.y - transform.localScale.y / 2,
+                            transform.position.z - transform.localScale.x / 2
+                        ),
+                        axis,
                         DeltaAngle
                     );
                     currentPosition = Position.Y;

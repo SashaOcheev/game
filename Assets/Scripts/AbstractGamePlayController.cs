@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Mechanics;
+using System;
 
 namespace Scripts
 {
@@ -9,10 +10,10 @@ namespace Scripts
     {
         protected GameMap _gameMap;
 
-        #region MonoBehaviour members
+        #region MonoBehavior members
         private void Start()
         {
-            _gameMap = GetComponent<GameMap>();
+
         }
         #endregion
 
@@ -20,19 +21,27 @@ namespace Scripts
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
-                FlipOnAllowedDirect(Direct.UP);
+                FlipIfAllow(Direct.Up);
             }
             if (Input.GetKeyUp(KeyCode.DownArrow))
             {
-                FlipOnAllowedDirect(Direct.DOWN);
+                FlipIfAllow(Direct.Down);
             }
             if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
-                FlipOnAllowedDirect(Direct.LEFT);
+                FlipIfAllow(Direct.Left);
             }
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
-                FlipOnAllowedDirect(Direct.RIGHT);
+                FlipIfAllow(Direct.Right);
+            }
+        }
+
+        protected void FlipIfAllow(Direct direct)
+        {
+            if (_gameMap.AllowedDirects[direct])
+            {
+                FlipOnAllowedDirect(direct);
             }
         }
 

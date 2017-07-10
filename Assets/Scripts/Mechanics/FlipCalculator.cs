@@ -32,18 +32,18 @@ namespace Scripts.Mechanics
             var newCurrentFields = new List<Field>();
             switch (direct)
             {
-                case Direct.UP:
+                case Direct.Up:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == left.Col && x.Row == left.Row + 1 ||
                         x.Col == right.Col && x.Row == right.Row + 1));
                     break;
-                case Direct.DOWN:
+                case Direct.Down:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == left.Col && x.Row == left.Row - 1 ||
                         x.Col == right.Col && x.Row == right.Row - 1));
                     break;
-                case Direct.LEFT:
+                case Direct.Left:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == left.Col - 1 && x.Row == left.Row));
                     break;
-                case Direct.RIGHT:
+                case Direct.Right:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == right.Col + 1 && x.Row == right.Row));
                     break;
             }
@@ -59,17 +59,17 @@ namespace Scripts.Mechanics
             var newCurrentFields = new List<Field>();
             switch (direct)
             {
-                case Direct.UP:
+                case Direct.Up:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == top.Col && x.Row == top.Row + 1));
                     break;
-                case Direct.DOWN:
+                case Direct.Down:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == bottom.Col && x.Row == bottom.Row - 1));
                     break;
-                case Direct.LEFT:
+                case Direct.Left:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == top.Col - 1 && x.Row == top.Row ||
                         x.Col == bottom.Col - 1 && x.Row == bottom.Row));
                     break;
-                case Direct.RIGHT:
+                case Direct.Right:
                     newCurrentFields.AddRange(fields.Where(x => x.Col == top.Col + 1 && x.Row == top.Row ||
                         x.Col == bottom.Col + 1 && x.Row == bottom.Row));
                     break;
@@ -84,19 +84,19 @@ namespace Scripts.Mechanics
             var newCurrentFields = new List<Field>();
             switch (direct)
             {
-                case Direct.UP:
+                case Direct.Up:
                     newCurrentFields.AddRange(fields.Where(x => x.Row == current.Row + 1 && x.Col == current.Col ||
                         x.Row == current.Row + 2 && x.Col == current.Col));
                     break;
-                case Direct.DOWN:
+                case Direct.Down:
                     newCurrentFields.AddRange(fields.Where(x => x.Row == current.Row - 1 && x.Col == current.Col ||
                         x.Row == current.Row - 2 && x.Col == current.Col));
                     break;
-                case Direct.LEFT:
+                case Direct.Left:
                     newCurrentFields.AddRange(fields.Where(x => x.Row == current.Row && x.Col == current.Col - 1 ||
                         x.Row == current.Row && x.Col == current.Col - 2));
                     break;
-                case Direct.RIGHT:
+                case Direct.Right:
                     newCurrentFields.AddRange(fields.Where(x => x.Row == current.Row && x.Col == current.Col + 1 ||
                         x.Row == current.Row && x.Col == current.Col + 2));
                     break;

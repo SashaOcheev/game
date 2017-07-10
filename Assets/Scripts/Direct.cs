@@ -6,9 +6,9 @@ namespace Scripts
 {
     public enum Direct
     {
-        UP,
-        RIGHT,
-        DOWN,
-        LEFT
+        Up,
+        Right,
+        Down,
+        Left
     }
 }

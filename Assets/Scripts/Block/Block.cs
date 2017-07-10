@@ -26,22 +26,22 @@ namespace Scripts.Block
 
         public void FlipRight()
         {
-            _flipBehavior.FlipRight(ref _currentPosition, transform);
+            _flipBehavior.FlipRight(transform, ref _currentPosition);
         }
 
         public void FlipLeft()
         {
-            _flipBehavior.FlipLeft(ref _currentPosition, transform);
+            _flipBehavior.FlipLeft(transform, ref _currentPosition);
         }
 
         public void FlipDown()
         {
-            _flipBehavior.FlipDown(ref _currentPosition, transform);
+            _flipBehavior.FlipDown(transform, ref _currentPosition);
         }
 
         public void FlipUp()
         {
-            _flipBehavior.FlipUp(ref _currentPosition, transform);
+            _flipBehavior.FlipUp(transform, ref _currentPosition);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Scripts.Mechanics;
+using UnityEngine;
 
 namespace Scripts.Block
 {
     public class BlockController : AbstractGameplayController
     {
-        AllowedDirectsCalculator _allowedDirectsCalculator;
-        GameMap _gameMap;
         Block _block;
 
         #region MonoBehavior Members
@@ -13,7 +12,7 @@ namespace Scripts.Block
         {
             _gameMap = GetComponent<GameMap>();
             _block = FindObjectOfType<Block>();
-            _block.CurrentPosition = _block.CurrentPosition = _gameMap.CurrentPosition;
+            _block.CurrentPosition = _gameMap.CurrentPosition;
         }
 
         private void Update()
@@ -26,16 +25,16 @@ namespace Scripts.Block
         {
             switch (direct)
             {
-                case Direct.LEFT:
+                case Direct.Left:
                     _block.FlipLeft();
                     break;
-                case Direct.RIGHT:
+                case Direct.Right:
                     _block.FlipRight();
                     break;
-                case Direct.UP:
+                case Direct.Up:
                     _block.FlipUp();
                     break;
-                case Direct.DOWN:
+                case Direct.Down:
                     _block.FlipDown();
                     break;
             }
