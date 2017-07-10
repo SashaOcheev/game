@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace Scripts.Mechanics
 {
-    public class GameMapController : AbstractGameplayController
+    public class GameMapController
     {
-        #region MonoBehavior Members
-        private void Start()
+        GameMap _gameMap;
+
+        public GameMapController(GameMap gameMap)
         {
-            _gameMap = GetComponent<GameMap>();
+            _gameMap = gameMap;
         }
 
-        private void Update()
-        {
-            OnKeyUp();
-        }
-        #endregion
-
-        protected override void FlipOnAllowedDirect(Direct direct)
+        public void Flip(Direct direct)
         {
             _gameMap.Flip(direct);
         }

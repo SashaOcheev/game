@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Scripts.Block
+namespace Scripts.Blocks
 {
     public class Block : MonoBehaviour
     {

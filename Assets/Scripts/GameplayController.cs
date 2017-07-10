@@ -1,23 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Scripts.Mechanics;
-using System;
+using Scripts.Blocks;
 
 namespace Scripts
 {
-    public abstract class AbstractGameplayController : MonoBehaviour
+    public class GameplayController : MonoBehaviour
     {
-        protected GameMap _gameMap;
+        BlockController _blockController;
+        GameMapController _gameMapController;
+        GameMap _gameMap;
 
         #region MonoBehavior members
         private void Start()
         {
+            Block block = FindObjectOfType<Block>();
 
+            _gameMap = GetComponent<GameMap>();
+            _blockController = new BlockController(_gameMap, block);
+            _gameMapController = new GameMapController(_gameMap);
+        }
+
+        private void Update()
+        {
+            OnKeyUp();
         }
         #endregion
 
-        protected void OnKeyUp()
+        private void OnKeyUp()
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
@@ -37,7 +46,7 @@ namespace Scripts
             }
         }
 
-        protected void FlipIfAllow(Direct direct)
+        private void FlipIfAllow(Direct direct)
         {
             if (_gameMap.AllowedDirects[direct])
             {
@@ -45,6 +54,10 @@ namespace Scripts
             }
         }
 
-        abstract protected void FlipOnAllowedDirect(Direct direct);
+        private void FlipOnAllowedDirect(Direct direct)
+        {
+            _blockController.Flip(direct);
+            _gameMapController.Flip(direct);
+        }
     }
 }

@@ -1,27 +1,20 @@
 ﻿using Scripts.Mechanics;
-using UnityEngine;
 
-namespace Scripts.Block
+namespace Scripts.Blocks
 {
-    public class BlockController : AbstractGameplayController
+    public class BlockController
     {
         Block _block;
+        GameMap _gameMap;
 
-        #region MonoBehavior Members
-        private void Start()
+        public BlockController(GameMap gameMap, Block block)
         {
-            _gameMap = GetComponent<GameMap>();
-            _block = FindObjectOfType<Block>();
+            _gameMap = gameMap;
+            _block = block;
             _block.CurrentPosition = _gameMap.CurrentPosition;
         }
 
-        private void Update()
-        {
-            OnKeyUp();
-        }
-        #endregion
-
-        protected override void FlipOnAllowedDirect(Direct direct)
+        public void Flip(Direct direct)
         {
             switch (direct)
             {

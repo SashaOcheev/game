@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -59,7 +58,7 @@ namespace Scripts.Mechanics
         }
 
         #region MonoBehavior Members
-        private void Start()
+        private void Awake()
         {
             _fields = FindObjectsOfType<Field>();
             _flipCalculator = new FlipCalculator();

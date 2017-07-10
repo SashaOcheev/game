@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Scripts.Block
+namespace Scripts.Blocks
 {
     public class FlipBehavior
     {
